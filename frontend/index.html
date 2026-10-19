@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#172B4D" />
+    <meta
+      name="description"
+      content="PlaceSure — clear, explainable placement eligibility decisions. Know your eligibility. Own your opportunity."
+    />
+    <title>PlaceSure · Placement workspace</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/chart.umd.js" defer></script>
+    <script src="/js/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#/overview" aria-label="PlaceSure overview">
+        <span class="brand-mark"
+          ><svg
+            width="25"
+            height="25"
+            viewBox="0 0 28 28"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M5 5h10.5a6.5 6.5 0 0 1 0 13H11v6H5V5Z" fill="white" />
+            <path
+              d="m12 11 3 3 7-7"
+              stroke="#78AFFA"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+        ></span>
+        <span class="brand-word"
+          >PlaceSure<span class="brand-dot">.</span></span
+        >
+      </a>
+      <a href="#/settings" class="workspace-switch"
+        ><span class="workspace-avatar">P</span
+        ><span>Placement workspace<small>Demo environment</small></span
+        ><svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <path d="m9 5 7 7-7 7" /></svg
+      ></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="navigation"></nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span id="tip-icon"></span>
+          <h4>Potential meets opportunity.</h4>
+          <p>
+            Clear criteria. Confident decisions.<br />A better placement
+            journey.
+          </p>
+          <a href="#/checker">Find an eligible match <span>↗</span></a>
+        </div>
+        <a class="account" href="#/settings"
+          ><span class="avatar avatar-navy">PO</span
+          ><span>Placement officer<small>Administrator workspace</small></span
+          ><span id="account-icon"></span
+        ></a>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="icon-button mobile-menu"
+            data-action="toggle-nav"
+            aria-label="Open navigation"
+            id="menu-toggle"
+          ></button
+          ><span class="breadcrumb-home" id="breadcrumb-icon"></span
+          ><span class="breadcrumb-divider">/</span
+          ><span id="breadcrumb">Overview</span>
+        </div>
+        <div class="topbar-right">
+          <button
+            class="global-search"
+            data-action="open-search"
+            aria-label="Search students and companies"
+          >
+            <span id="search-icon"></span><span>Search anything...</span
+            ><kbd>⌘ K</kbd></button
+          ><span class="topbar-separator"></span
+          ><a href="#/settings" class="connection-pill" id="connection-pill"
+            ><i></i><span>Workspace online</span></a
+          ><a
+            href="#/settings"
+            class="avatar avatar-header"
+            aria-label="Workspace settings"
+            >PO</a
+          >
+        </div>
+      </header>
+      <main id="main" tabindex="-1" aria-live="polite"></main>
+      <footer class="app-footer">
+        <span
+          >PlaceSure <span class="footer-dot">·</span> Know your eligibility.
+          Own your opportunity.</span
+        ><span>Made for the next step <span class="tiny-arrow">↗</span></span>
+      </footer>
+    </div>
+    <div id="modal-root"></div>
+    <div
+      id="toast-root"
+      class="toast-root"
+      aria-live="polite"
+      aria-atomic="false"
+    ></div>
+    <noscript
+      ><div class="no-script">
+        Please enable JavaScript to use PlaceSure. The Java server and database
+        power all eligibility decisions.
+      </div></noscript
+    >
+  </body>
+</html>

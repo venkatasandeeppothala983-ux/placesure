@@ -1,0 +1,63 @@
+# PAID configuration: Java web service + private MySQL + persistent disk.
+# Review Render's billing estimate before applying. No credentials are stored in this file.
+# Push the CONTENTS of PlaceSure/ to the Git repository root.
+services:
+  - type: pserv
+    name: placesure-mysql
+    runtime: docker
+    region: singapore
+    plan: 1c-2g
+    dockerfilePath: ./deploy/mysql/Dockerfile
+    dockerContext: .
+    autoDeployTrigger: 'off'
+    disk:
+      name: placesure-mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 10
+    envVars:
+      - key: MYSQL_DATABASE
+        value: placesure
+      - key: MYSQL_USER
+        value: placesure_app
+      - key: MYSQL_PASSWORD
+        generateValue: true
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+
+  - type: web
+    name: placesure
+    runtime: docker
+    region: singapore
+    plan: 0.5c-512mb
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: 'off'
+    healthCheckPath: /api/health
+    envVars:
+      - key: BIND_HOST
+        value: 0.0.0.0
+      - key: DB_HOST
+        fromService:
+          name: placesure-mysql
+          type: pserv
+          property: host
+      - key: DB_PORT
+        value: '3306'
+      - key: DB_NAME
+        value: placesure
+      - key: DB_USER
+        fromService:
+          name: placesure-mysql
+          type: pserv
+          envVarKey: MYSQL_USER
+      - key: DB_PASSWORD
+        fromService:
+          name: placesure-mysql
+          type: pserv
+          envVarKey: MYSQL_PASSWORD
+      - key: DB_SSL_MODE
+        value: DISABLED
+      - key: DB_WAIT_SECONDS
+        value: '120'
+      - key: SEED_DEMO
+        value: 'true'
