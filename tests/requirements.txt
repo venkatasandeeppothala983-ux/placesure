@@ -1,0 +1,2 @@
+# Only for browser verification; not needed by the Java application.
+playwright==1.64.0
